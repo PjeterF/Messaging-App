@@ -1,0 +1,45 @@
+.auth_form_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.auth_input{
+    border: 1px;
+    border-color: #E0CCBE;
+    border-radius: 5px;
+    border-style: solid;
+    padding: 5px;
+    margin-bottom: 20px;
+    width: 30%;
+    background-color: #EEEDEB;
+    color: #3C3633;
+}
+
+.auth_submit_button{
+    border: 2px;
+    border-radius: 5px;
+    border-style: solid;
+    padding: 5px;
+    border-color: #747264;
+    background-color: #3C3633;
+    color: white;
+    cursor:pointer;
+}
+.auth_link{
+    color: #3C3633;
+    text-decoration: underline;
+    cursor:pointer;
+}
+
+.auth_group{
+    display: flex;
+    justify-content: space-between;
+    width: 30%;
+}
+
+.auth_title{
+    color: #3C3633;
+}
