@@ -13,6 +13,7 @@ app.use(express.json())
 const server=http.createServer(app)
 
 app.use('/api/authentication', require('./routes/authentication'))
+app.use('/api/user', require('./routes/user'))
 
 mongoose.connect(process.env.CONNECTION_STRING)
 .then(()=>{

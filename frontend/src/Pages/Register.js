@@ -8,15 +8,16 @@ function Register(){
     const [username, setUsername]=useState('')
     const [password1, setPassword1]=useState('')
     const [password2, setpassword2]=useState('')
+    const [error, setError]=useState('')
 
     async function onRegister(){
         if(username=='' || password1=='' || password2==''){
-            console.log('All fields must have a value')
+            setError('All fields must have a value')
             return;
         }
 
         if(password1!=password2){
-            console.log('Passwords do not match')
+            setError('Passwords do not match')
             return;
         }
 
@@ -31,16 +32,19 @@ function Register(){
                     headers:{
                         'Content-Type':'application/json'
                     },
-                    body:JSON.stringify(user)
+                    body:JSON.stringify({username:username, password:password1})
                 }
             )
 
+            const data=await response.json()
             if(response.ok){
-                const data=await response.json()
-                console.log(data)
+                setError('')
+                navigate('/login')
+            }else{
+                setError(data.error)
             }
         }catch(error){
-            console.log(error)
+            setError(error)
         }
     }
 
@@ -54,6 +58,7 @@ function Register(){
                 <button className="auth_submit_button" onClick={()=>{onRegister()}}>Register</button>
                 <div className="auth_link" onClick={()=>{navigate('/login')}}>Login</div>
             </div>
+            <div className="auth_error">{error}</div>
         </div>
     )
 }

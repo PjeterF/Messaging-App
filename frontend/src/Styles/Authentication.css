@@ -43,3 +43,7 @@
 .auth_title{
     color: #3C3633;
 }
+
+.auth_error{
+    color: red;
+}

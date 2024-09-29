@@ -1,6 +1,8 @@
 const router=require('express').Router()
-const authenticationController=require('../controllers/authenticationController')
+const controller=require('../controllers/authenticationController')
 
-router.post('/register', authenticationController.register)
+router.post('/register', controller.register)
+
+router.post('/login', controller.login)
 
 module.exports=router
