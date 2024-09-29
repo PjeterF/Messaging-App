@@ -12,7 +12,12 @@ const chatRoomSchema=new mongoose.Schema({
     messages:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:'Message'
-    }]
+    }],
+    owner:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'User',
+        required:true
+    }
 })
 
 const ChatRoom=mongoose.model('ChatRoom', chatRoomSchema)

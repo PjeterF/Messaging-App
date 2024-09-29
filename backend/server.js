@@ -14,6 +14,7 @@ const server=http.createServer(app)
 
 app.use('/api/authentication', require('./routes/authentication'))
 app.use('/api/user', require('./routes/user'))
+app.use('/api/chatRoom', require('./routes/chatRoom'))
 
 mongoose.connect(process.env.CONNECTION_STRING)
 .then(()=>{
