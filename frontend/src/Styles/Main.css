@@ -2,12 +2,12 @@
     display: grid;
     grid-template-areas: 
     "header header header"
-    "left center right"
-    "footer footer footer";
+    "left center right";
     grid-template-columns: 200px auto 200px;
-    grid-template-rows: 100px auto 100px;
+    grid-template-rows: 4% 96%;
     height: 100vh;
     width: 100vw;
+    background-color: whitesmoke;
 }
 
 .header{
@@ -24,9 +24,4 @@
 
 .right{
     grid-area: right;
-}
-
-.footer{
-    grid-area: footer;
-    height: 10%;
 }

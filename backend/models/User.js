@@ -11,7 +11,11 @@ const userSchema=new mongoose.Schema({
     },
     pictureURL:{
         type:String
-    }
+    },
+    chatRooms:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'ChatRoom'
+    }],
 })
 
 const User=mongoose.model('User', userSchema)

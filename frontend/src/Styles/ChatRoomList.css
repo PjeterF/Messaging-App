@@ -1,0 +1,45 @@
+.container{
+    display: flex;
+    flex-direction: column;
+}
+
+.searchBar{
+    flex: 1;
+    margin-bottom: 2px;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.item{
+    flex: 1;
+    border-style: solid;
+    border-width: 2px;
+    transition: linear;
+    padding: 2px;
+    margin-bottom: 2px;
+    margin-left: 2px;
+    margin-right: 2px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+}
+
+.title{
+    flex:1;
+    display: flex;
+    justify-content: center;
+}
+
+.item:hover{
+    transform: scale(1.02);
+}
+
+.chatRoomList_button{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    margin: 2px;
+    border-style: solid;
+    border-width: 2px;
+    cursor: pointer;
+}

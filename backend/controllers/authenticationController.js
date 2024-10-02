@@ -8,7 +8,7 @@ async function register(req, res){
     if(searchedUser){
         return res.status(400).json({error:'Username is already taken'})
     }
-    console.log(password)
+    
     try{
         const encryptedPassword=await bcrypt.hash(password, 10)
         const newUser=await User.create({

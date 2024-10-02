@@ -11,4 +11,10 @@ router.get('/all', controller.getAll)
 
 router.get('/:chatRoomID', controller.getByID)
 
+router.post('/message', controller.sendMessage)
+
+router.post('/name', controller.setName)
+
+router.get('/user/:username', controller.getChatRoomsOfAUser)
+
 module.exports=router
