@@ -17,4 +17,6 @@ router.post('/name', controller.setName)
 
 router.get('/user/:username', controller.getChatRoomsOfAUser)
 
+router.post('/delete', controller.deleteChatRoom)
+
 module.exports=router

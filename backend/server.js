@@ -26,7 +26,6 @@ const io=new socketIO.Server(server, {
 
 io.on('connection', (socket)=>{
     socket.on('message', ({chatRoomID, message})=>{
-        console.log('sending message: '+message.content)
         io.to(chatRoomID).emit('addMessage', message)
     })
 

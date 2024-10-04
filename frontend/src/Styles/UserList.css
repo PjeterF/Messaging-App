@@ -23,10 +23,6 @@
 
 .user_list_image{
     position: absolute;
-    top: -50%;
-    left: -100%;
-    width: 150px;
-    height: auto;
 }
 
 .user_list_username{

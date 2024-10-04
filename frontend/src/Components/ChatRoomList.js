@@ -2,8 +2,9 @@ import React, { cloneElement } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useChatContext } from "../Context/ChatContextProvider";
+
 import '../Styles/ChatRoomList.css'
-import '../Styles/Theme.css'
+import '../Styles/MessagingApp.css'
 
 function ChatList(){
     const [list, setList]=useState([])
@@ -42,6 +43,10 @@ function ChatList(){
             if(response.ok){
                 const data=await response.json()
                 setList([...list, data])
+                dispatch({
+                    type:'SET_CHAT',
+                    payload:data
+                })
             }
         } catch (error) {
             console.log(error)
@@ -84,33 +89,22 @@ function ChatList(){
         fetchChatRoomsOfAUser()
     }, [state.chatRoom.name])
 
-    const itemTheme={
-        backgroundColor:'var(--primary-color)',
-        borderColor:'var(--accent-color)',
-        color:'var(--text-color)'
-    }
-
-    const titleTheme={
-        color:'var(--text-color)'
-    }
-
-    const buttonTheme={
-        backgroundColor:'var(--secondary-bg-color)',
-        borderColor:'var(--accent-color)',
-        color:'var(--text-color)',
+    const listItemStyle={
+        cursor:'pointer',
+        padding:'5px'
     }
     
     return(
-        <div className="container">
-            <h2 style={titleTheme} className="title">
-                Chat rooms
-            </h2>
-            <div onClick={createChat} style={buttonTheme} className="chatRoomList_button">
-                Create
+        <div style={{borderTop:'1px solid black'}} className="container">
+            <div style={{display:'flex', justifyContent:'space-between', alignItems:'center'}}>
+                <div style={{fontSize:'25px', fontWeight:'bold', marginBottom:'5px'}}>Chat rooms</div>
+                <img onClick={createChat} className="icon" style={{height:'20px', cursor:'pointer'}}  src="https://i.ibb.co/sVnYctZ/plus-icon.png"></img>
             </div>
-            {list.map((item, index)=>(
-                <div key={index} style={itemTheme} className="item" onClick={()=>{selectChat(item._id)}}>{item.name}</div>
-            ))}
+            <div className="list_container">
+                {list.map((item, index)=>(
+                    <div style={listItemStyle} key={index} className="list_item" onClick={()=>{selectChat(item._id)}}>{item.name}</div>
+                ))}
+            </div>
         </div>
     )
 }

@@ -1,0 +1,23 @@
+.userinfo_container{
+    display: flex;
+    flex-direction: column;
+}
+
+.userinfo_picture{
+    
+}
+
+.userinfo_logout{
+    border-style: solid;
+    border-radius: 0px;
+    border-width: 2px;
+    border-top: hidden;
+    border-right: hidden;
+    padding: 2px;
+    cursor: pointer;
+    height: 100%;
+}
+
+.userinfo_logout:hover{
+    transform: scale(1.02);
+}

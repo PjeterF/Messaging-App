@@ -1,0 +1,45 @@
+.page_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 95vw;
+    height: 90vh;
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    left: 2.5vw;
+    top: 5vh;
+}
+
+.chatRoom_layout_container{
+    display: grid;
+    grid-template-areas: 
+    "left center header"
+    "left center right"
+    "left center right";
+    grid-template-columns: 25% auto 25%;
+    border-style: solid;
+    border-radius: 5px;
+    border-width: 4px;
+    border-color:rgb(170, 20, 50);
+    box-shadow: 8px 8px 10px #777777;
+    width: 100%;
+    height: 100%;
+    gap:1px;
+    overflow: hidden;
+}
+
+.header{
+    grid-area: header;
+}
+
+.left{
+    grid-area: left;
+}
+
+.center{
+    grid-area: center;
+}
+
+.right{
+    grid-area: right;
+}

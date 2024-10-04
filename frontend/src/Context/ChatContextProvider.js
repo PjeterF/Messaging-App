@@ -29,13 +29,21 @@ function chatRoomReducer(state, action){
                 chatRoom:action.payload
             }
         case 'SET_CHATROOM_NAME':
-        return {
-            ...state,
-            chatRoom:{
-                ...state.chatRoom,
-                name:action.payload
+            return {
+                ...state,
+                chatRoom:{
+                    ...state.chatRoom,
+                    name:action.payload
+                }
             }
-        }
+        case 'ADD_USER':
+            return{
+                ...state,
+                chatRoom:{
+                    ...state.chatRoom,
+                    users:[...state.chatRoom.users, action.payload]
+                }
+            }
     }
 }
 

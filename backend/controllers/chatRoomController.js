@@ -36,6 +36,8 @@ async function create(req, res) {
         }
         await newChatRoom.save()
 
+        await newChatRoom.populate('users owner messages')
+
         res.status(200).json(newChatRoom)
     } catch (error) {
         return res.status(500).json(error)
@@ -45,6 +47,9 @@ async function create(req, res) {
 async function addUser(req, res){
     try {
         const {username, chatRoomID}=req.body
+
+        console.log(username)
+        console.log(chatRoomID)
 
         const searchedUser=await User.findOne({username:username})
         if(!searchedUser){
@@ -62,7 +67,7 @@ async function addUser(req, res){
         searchedUser.chatRooms.push(searchedChatRoom._id)
         await searchedUser.save()
 
-        return res.status(200).json(searchedChatRoom)
+        return res.status(200).json(searchedUser)
     } catch (error) {
         return res.status(500).json(error)
     }
@@ -194,6 +199,33 @@ async function getChatRoomsOfAUser(req, res){
     }
 }
 
+async function deleteChatRoom(req, res){
+    try {
+        const{chatRoomID}=req.body
+
+        const chatRoom=await ChatRoom.findById(chatRoomID)
+        if(!chatRoom){
+            return res.status(400).json('Chat room with that ID does not exist')
+        }
+
+        for(let i=0;i<chatRoom.users.length;i++){
+            const user=await User.findById(chatRoom.users[i])
+            if(user){
+                user.chatRooms=user.chatRooms.filter(chatRoomID=>!chatRoomID.equals(chatRoom._id))
+                await user.save()
+            }
+        }
+
+        await Message.deleteMany({_id:{$in:chatRoom.messages}})
+
+        await ChatRoom.deleteOne({_id:chatRoom._id})
+
+        return res.status(200).json('Succesfully deleted chat room '+chatRoomID)
+    } catch (error) {
+        return res.status(500).json(error)
+    }
+}
+
 module.exports={
     create,
     addUser,
@@ -202,5 +234,6 @@ module.exports={
     getByID,
     sendMessage,
     setName,
-    getChatRoomsOfAUser
+    getChatRoomsOfAUser,
+    deleteChatRoom
 }

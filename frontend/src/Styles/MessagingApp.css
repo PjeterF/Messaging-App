@@ -1,0 +1,100 @@
+.container{
+    padding: 5px;
+}
+
+.list_container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.list_item{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    border-bottom: 1px solid black;
+    justify-content: start;
+    padding: 5px;
+}
+
+.input_container{
+    display: flex;
+    padding: 5px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: gray;
+    background-color: whitesmoke;
+    border-radius: 15px;
+}
+
+.input_field{
+    border-style: hidden;
+    background: transparent;
+}
+
+.input_field:focus{
+    outline: none;
+}
+
+.text{
+    color: white;
+}
+
+.user{
+    display: flex;
+    align-items: center;
+}
+
+.user_picture_container{
+    width: 50px;
+    height: 50px;
+    border-radius: 100px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #252525;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    overflow: hidden;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+}
+
+.user_picture{
+    width: auto;
+    height: 50px;
+}
+/*
+.user_picture_container:hover{
+    transform: scale(1.1);
+}
+*/
+.user_username{
+    margin-left: 10px;
+}
+
+.chat_name_container{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid black;
+}
+
+.chat_name_input{
+    border-style: hidden;
+}
+
+.chat_name_input:focus{
+    outline:brown;
+}
+
+.icon{
+    height: 25px;
+    width: auto;
+    transition: transform 0.2s ease;
+}
+
+.icon:hover{
+    transform: scale(1.1);
+}

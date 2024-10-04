@@ -1,15 +1,12 @@
 :root{
     --primary-color:#222831;
     --secondary-color:#393E46;
-    --accent-color:#040D12;
+    --accent-color:#3F72AF;
     --text-color:#EEEEEE;
     --error-color:#bb0000;
 
     --primary-bg-color:#040D12;
     --secondary-bg-color:#232D3F;
-
-    --msg-color-1:#181C14;
-    --msg-color-2:#24282c;
 }
 
 .input{

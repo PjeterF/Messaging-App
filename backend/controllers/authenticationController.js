@@ -13,7 +13,9 @@ async function register(req, res){
         const encryptedPassword=await bcrypt.hash(password, 10)
         const newUser=await User.create({
             username:username,
-            password:encryptedPassword
+            password:encryptedPassword,
+            pictureURL:null,
+            chatRooms:[]
         })
         return res.status(200).json(newUser)
     }catch(error){

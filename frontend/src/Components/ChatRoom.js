@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useRef } from "react";
 
 import '../Styles/ChatRoom.css'
-import '../Styles/Theme.css'
+import '../Styles/MessagingApp.css'
 
 function ChatRoom(){
     const {state, dispatch, socket}=useChatContext()
@@ -74,75 +74,67 @@ function ChatRoom(){
         }
     }
 
+    async function deleteChatRoom(){
+        const response=await fetch('/api/chatRoom/delete', {
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'       
+            },
+            body:JSON.stringify({chatRoomID:state.chatRoom._id})
+        })
+
+        if(response.ok){
+            dispatch({
+                type:'SET_CHAT',
+                payload:{
+                    _id:'0',
+                    name:'No chat is selected',
+                    users:[],
+                    messages:[],
+                    owner:{}
+                }
+            })
+        }
+    }
+
     useEffect(()=>{
         setChatRoomName(state.chatRoom.name)
     }, [state.chatRoom])
 
-    const primaryTheme={
-        backgroundColor:'var(--msg-color-2)',
-        color:'var(--text-color)',
-    }
-    
-    const secondaryTheme={
-        backgroundColor:'var(--secondary-color)',
-        color:'var(--text-color)',
-        borderColor:'var(--primary-bg-color)',
-    }
-    
-    const accentTheme={
-        backgroundColor:'var(--secondary-bg-color)',
-        color:'var(--text-color)',
-        borderColor:'var(--primary-bg-color)',
-    }
-
-    const msgStyle={
-        borderStyle:'solid',
-        borderRadius:'5px',
-        padding:'5px',
-        borderWidth:'2px'
-    }
-
-    const leftTheme={
-        ...accentTheme,
-        ...msgStyle
-    }
-
-    const rightTheme={
-        ...secondaryTheme,
-        ...msgStyle
-    }
-
     return(
-        <div className="chatRoom_container">
-            <div className="chatRoom_info_container text">
-                <h2>
+        <div className="chat_room_container">
+            <div className="chat_room_header">
                     {state.chatRoom._id!=0 ? (
-                        <input value={chatRoomName} onBlur={setName} onChange={(e)=>{setChatRoomName(e.target.value)}} className="chatRoom_info_title text"></input>
-                    ):(
-                        <div className="text">No chat is selected</div>
+                        <div className="input_container">
+                            <input className="input_field" value={chatRoomName} onBlur={setName} onChange={(e)=>{setChatRoomName(e.target.value)}}></input>
+                        </div>
+                       ):(
+                        <div>No chat is selected</div>
                     )}
-                </h2>
+                    <img onClick={deleteChatRoom} style={{cursor:'pointer'}} className="icon" src="https://i.ibb.co/Q8qGHm9/recycle-bin-icon.png"></img>
             </div>
-            <div ref={scrollReference} className="chatRoom_list_container">
+            <div ref={scrollReference} className="chat_room_message_list">
                 {state.chatRoom.messages.map((item, index)=>{
                     return(
                         item.user.username==username ?(
-                            <div className="chatRoom_list_item right" key={index}>
-                                <div className="text">{item.user.username}</div>
-                                <div style={rightTheme}>{item.content}</div>
+                            <div className="message_box right" key={index}>
+                                <div className="message_username right">{item.user.username}</div>
+                                <div className="message_content right">{item.content}</div>
                             </div>
                         ):(
-                            <div className="chatRoom_list_item left" key={index}>
-                                <div className="text">{item.user.username}</div>
-                                <div style={leftTheme}>{item.content}</div>
+                            <div className="message_box left" key={index}>
+                                <div className="message_username left">{item.user.username}</div>
+                                <div className="message_content left">{item.content}</div>
                             </div>
                         )
                     )
                 })}
             </div>
-            <div className="chatRoom_input_container">
-                <input ref={inputReference} style={primaryTheme} className="chatRoom_input_input" placeholder="Enter message" type="text" onChange={(e)=>{setMessage(e.target.value)}}></input>
-                <button style={primaryTheme} className="chatRoom_input_button" onClick={sendMessage}>Send</button>
+            <div className="chat_room_input">
+                <div className="message_input_container">
+                    <input className="message_input" style={{width:'100%'}} ref={inputReference} placeholder="Enter message" type="text" onChange={(e)=>{setMessage(e.target.value)}}></input>
+                    <img style={{cursor:'pointer'}} onClick={sendMessage} className="icon" src="https://i.ibb.co/K9zsBnf/direction-corner-top-right-icon.png"></img>
+                </div>
             </div>
         </div>
     )

@@ -31,7 +31,7 @@ function Login(){
                 sessionStorage.setItem('username', data.username)
                 sessionStorage.setItem('userID', data._id)
 
-                navigate('/main')
+                navigate('/chatRoom')
                 setError('')
             }else{
                 setError(data.error)
