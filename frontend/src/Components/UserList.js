@@ -25,7 +25,7 @@ function UserList(){
            if(response.ok){
                 dispatch({
                     type:'ADD_USER',
-                    payload:data._id
+                    payload:data
                 })
            }else{
                 alert(JSON.stringify(data))

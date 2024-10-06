@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useChatContext } from "../Context/ChatContextProvider";
 import { useEffect } from "react";
 import { useRef } from "react";
+import PopUp from "./PopUp";
 
 import '../Styles/ChatRoom.css'
 import '../Styles/MessagingApp.css'
@@ -111,7 +112,22 @@ function ChatRoom(){
                        ):(
                         <div>No chat is selected</div>
                     )}
-                    <img onClick={deleteChatRoom} style={{cursor:'pointer'}} className="icon" src="https://i.ibb.co/Q8qGHm9/recycle-bin-icon.png"></img>
+                    <div style={{display:'flex'}}>
+                        <img onClick={deleteChatRoom} style={{cursor:'pointer'}} className="icon" src="https://i.ibb.co/Q8qGHm9/recycle-bin-icon.png"></img>
+                        <PopUp trigger={<img onClick={deleteChatRoom} style={{cursor:'pointer'}} className="icon" src="https://i.ibb.co/S0zx94t/ellipsis-v-icon.png"></img>}>
+                            {state.chatRoom.users.map((user, index)=>{
+                                return(
+                                    <div style={{display:"flex", flexDirection:"column"}}>
+                                        <div>
+                                            <div>{user.username}</div>
+                                            <div>kick</div>
+                                        </div>
+                                    </div>
+                                )
+                            })}
+                        </PopUp>
+                        
+                    </div>
             </div>
             <div ref={scrollReference} className="chat_room_message_list">
                 {state.chatRoom.messages.map((item, index)=>{
