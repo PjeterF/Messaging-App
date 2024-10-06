@@ -28,8 +28,9 @@ function Login(){
             const data=await response.json()
             console.log(data)
             if(response.ok){
-                sessionStorage.setItem('username', data.username)
-                sessionStorage.setItem('userID', data._id)
+                sessionStorage.setItem('username', data.user.username)
+                sessionStorage.setItem('userID', data.user._id)
+                sessionStorage.setItem('token', data.token)
 
                 navigate('/chatRoom')
                 setError('')
@@ -43,12 +44,12 @@ function Login(){
 
     return(
         <div className="auth_form_container">
-            <h2 className="auth_title text">Log In</h2>
-            <input className="auth_input input" placeholder="Username"  onChange={(e)=>{setUsername(e.target.value)}}></input>
-            <input className="auth_input input" type="password" placeholder="Password" onChange={(e)=>{setPassword(e.target.value)}}></input>
+            <h2 className="auth_title">Log In</h2>
+            <input className="auth_input" placeholder="Username"  onChange={(e)=>{setUsername(e.target.value)}}></input>
+            <input className="auth_input" type="password" placeholder="Password" onChange={(e)=>{setPassword(e.target.value)}}></input>
             <div className="auth_group">
-                <button className="auth_submit_button button" onClick={()=>{onLogin()}}>Log In</button>
-                <div className="auth_link text" onClick={()=>{navigate('/register')}}>Create an account</div>
+                <button className="auth_submit_button" onClick={()=>{onLogin()}}>Log In</button>
+                <div className="auth_link" onClick={()=>{navigate('/register')}}>Create an account</div>
             </div>
             <div className="auth_error">{error}</div>
         </div>

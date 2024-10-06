@@ -22,10 +22,6 @@ function Register(){
         }
 
         try{
-            const user={
-                username:username,
-                password:password1
-            }
             const response=await fetch('/api/authentication/register',
                 {
                     method:'POST',
@@ -50,13 +46,13 @@ function Register(){
 
     return(
         <div className="auth_form_container">
-            <h2 className="auth_title text">Registration</h2>
-            <input className="auth_input input" placeholder="Username" onChange={(e)=>{setUsername(e.target.value)}}></input>
-            <input className="auth_input input" type="password" placeholder="Password" onChange={(e)=>{setPassword1(e.target.value)}}></input>
-            <input className="auth_input input" type="password" placeholder="Repeat Password" onChange={(e)=>{setpassword2(e.target.value)}}></input> 
+            <h2 className="auth_title">Registration</h2>
+            <input className="auth_input" placeholder="Username" onChange={(e)=>{setUsername(e.target.value)}}></input>
+            <input className="auth_input" type="password" placeholder="Password" onChange={(e)=>{setPassword1(e.target.value)}}></input>
+            <input className="auth_input" type="password" placeholder="Repeat Password" onChange={(e)=>{setpassword2(e.target.value)}}></input> 
             <div className="auth_group">
-                <button className="auth_submit_button button" onClick={()=>{onRegister()}}>Register</button>
-                <div className="auth_link text" onClick={()=>{navigate('/login')}}>Login</div>
+                <button className="auth_submit_button" onClick={()=>{onRegister()}}>Register</button>
+                <div className="auth_link" onClick={()=>{navigate('/login')}}>Login</div>
             </div>
             <div className="auth_error">{error}</div>
         </div>

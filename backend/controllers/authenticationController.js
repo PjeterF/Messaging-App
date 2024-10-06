@@ -1,5 +1,6 @@
 const {User}=require('../models/User')
 const bcrypt=require('bcrypt')
+const jwt = require('jsonwebtoken');
 
 async function register(req, res){
     const {username, password}=req.body
@@ -37,7 +38,13 @@ async function login(req, res){
             return res.status(400).json({error:'Incorrect credentials'})
         }
 
-        return res.status(200).json(searchedUser)
+        const token=jwt.sign(
+            {user:searchedUser},
+            process.env.TOKEN_KEY,
+             {expiresIn:'1h'}
+            )
+
+        return res.status(200).json({user:searchedUser, token:token})
     }catch(error){
         return res.status(400).json(error)
     } 

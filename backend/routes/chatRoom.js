@@ -1,5 +1,6 @@
 const router=require('express').Router()
 const controller=require('../controllers/chatRoomController')
+const authMid=require('../middleware/authentication.js')
 
 router.post('/create', controller.create)
 

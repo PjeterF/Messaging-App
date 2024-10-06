@@ -4,26 +4,35 @@
     align-items: center;
     flex-direction: column;
     height: 100vh;
-    background-color: #040D12;
+    background-color: #7FA1C3;
 }
 
 .auth_input{
     padding: 5px;
     margin-bottom: 20px;
     width: 30%;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 5px;
 }
 
 .auth_submit_button{
     padding: 5px;
     cursor:pointer;
+    background-color: E2DAD6;
 }
 .auth_link{
     text-decoration: underline;
     cursor:pointer;
+    color: #F5EDED;
 }
 
 .auth_group{
     display: flex;
     justify-content: space-between;
     width: 30%;
+}
+
+.auth_title{
+    color: #F5EDED;
 }
