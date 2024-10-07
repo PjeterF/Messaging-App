@@ -98,6 +98,40 @@ function ChatRoom(){
         }
     }
 
+    async function removeUser(username){
+        if(sessionStorage.getItem('username')!=state.chatRoom.owner.username){
+            return console.log('Only the owner can remove users')
+        }
+
+        if(username==state.chatRoom.owner.username){
+            return console.log('You cannot remove yourself')
+        }
+
+        try {
+            const response=await fetch('/api/chatRoom/removeUser', {
+                method:'POST',
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                body:JSON.stringify({
+                    username:username,
+                    chatRoomID:state.chatRoom._id
+                })
+            })
+
+            if(response.ok){
+                dispatch({
+                    type:'REMOVE_USER',
+                    payload:username
+                })
+            }else{
+                console.log('Error removing user from chat room')
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     useEffect(()=>{
         setChatRoomName(state.chatRoom.name)
     }, [state.chatRoom])
@@ -120,7 +154,7 @@ function ChatRoom(){
                                     <div style={{display:"flex", flexDirection:"column"}}>
                                         <div>
                                             <div>{user.username}</div>
-                                            <div>kick</div>
+                                            <div onClick={()=>{removeUser(user.username)}}>kick</div>
                                         </div>
                                     </div>
                                 )

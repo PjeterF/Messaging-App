@@ -44,6 +44,14 @@ function chatRoomReducer(state, action){
                     users:[...state.chatRoom.users, action.payload]
                 }
             }
+        case 'REMOVE_USER':
+            return{
+                ...state,
+                chatRoom:{
+                    ...state.chatRoom,
+                    users:state.chatRoom.users.filter(user=>user.username!==action.payload)
+                }
+            }
     }
 }
 
